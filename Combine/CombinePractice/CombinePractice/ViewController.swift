@@ -188,6 +188,7 @@ class ViewController: UIViewController {
     }
     
     @objc private func usernameFieldDidChange(_ textField: UITextField) {
+        submitButton.isEnabled = false
         username = textField.text ?? ""
     }
 
