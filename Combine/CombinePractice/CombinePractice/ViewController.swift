@@ -6,20 +6,27 @@
 //
 
 import UIKit
+import Combine
 
 class ViewController: UIViewController {
 
+    @Published private var username = ""
+    @Published private var password = ""
+    @Published private var repeatPassword = ""
+    
     var usernameTextField: UITextField!
     var passwordTextField: UITextField!
     var repeatPasswordTextField: UITextField!
     var tcSwitch: UISwitch!
     var submitButton: UIButton!
     
+    var signUpButtonStream: AnyCancellable?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
-
+    
     private func setupUI() {
         view.backgroundColor = .white
         setupUserNameTextField()
@@ -27,11 +34,15 @@ class ViewController: UIViewController {
         setupRepeatPasswordTextField()
         setupTermsAndConditions()
         setupSubmitButton()
+        
+        configureValidation()
     }
     
     private func setupUserNameTextField() {
         usernameTextField = createTextField()
         usernameTextField.placeholder = "Enter email"
+        usernameTextField.addTarget(self, action: #selector(usernameFieldDidChange(_:)),
+                                    for: .editingChanged)
         view.addSubview(usernameTextField)
         
         view.addConstraints([
@@ -45,6 +56,8 @@ class ViewController: UIViewController {
     private func setupPasswordTextField() {
         passwordTextField = createTextField()
         passwordTextField.placeholder = "Enter password"
+        passwordTextField.addTarget(self, action: #selector(passwordFieldDidChange(_:)),
+                                    for: .editingChanged)
         view.addSubview(passwordTextField)
         
         view.addConstraints([
@@ -58,6 +71,8 @@ class ViewController: UIViewController {
     private func setupRepeatPasswordTextField() {
         repeatPasswordTextField = createTextField()
         repeatPasswordTextField.placeholder = "Repeat password"
+        repeatPasswordTextField.addTarget(self, action: #selector(repeatPasswordFieldDidChange(_:)),
+                                          for: .editingChanged)
         view.addSubview(repeatPasswordTextField)
         
         view.addConstraints([
@@ -66,6 +81,53 @@ class ViewController: UIViewController {
             repeatPasswordTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
             repeatPasswordTextField.heightAnchor.constraint(equalToConstant: 50)
         ])
+    }
+    
+    private func configureValidation() {
+        let passwordVerification = configurePasswordValidation()
+        let usernameVerification = configureUsernameValidation()
+        
+        let credentialVerification: AnyPublisher<(String, String)?, Never>
+        = usernameVerification.combineLatest(passwordVerification) { username, password -> (String, String)? in
+            guard let password = password, let username = username else { return nil }
+            
+            return (username, password)
+        }
+        .eraseToAnyPublisher()
+        
+        signUpButtonStream =
+        credentialVerification.map {$0 != nil}
+            .receive(on: RunLoop.main)
+            .assign(to: \.isEnabled, on: submitButton)
+    }
+    
+    private func configurePasswordValidation() -> AnyPublisher<String?, Never> {
+        let passwordVerification = $password.combineLatest($repeatPassword) { password, repeatPassword -> String? in
+            guard password == repeatPassword, password.count >= 8 else {
+                return nil
+            }
+            
+            return password
+        }
+        .eraseToAnyPublisher()
+        
+        return passwordVerification
+    }
+    
+    private func configureUsernameValidation() -> AnyPublisher<String?, Never> {
+        let usernameVerification =
+        $username.debounce(for: 1, scheduler: RunLoop.main)
+            .removeDuplicates()
+            .flatMap { username in
+                Future { promise in
+                    NetworkService.shared.verifyUserName(username) { available in
+                        promise(.success(available ? username : nil))
+                    }
+                }
+            }
+            .eraseToAnyPublisher()
+        
+        return usernameVerification
     }
     
     private func setupTermsAndConditions() {
@@ -97,6 +159,7 @@ class ViewController: UIViewController {
         submitButton.setTitle("Submit", for: .normal)
         submitButton.addTarget(self, action: #selector(didTapSubmit(_:)), for: .touchUpInside)
         submitButton.translatesAutoresizingMaskIntoConstraints = false
+        submitButton.isEnabled = false
         view.addSubview(submitButton)
         
         view.addConstraints([
@@ -114,6 +177,18 @@ class ViewController: UIViewController {
         textField.translatesAutoresizingMaskIntoConstraints = false
         
         return textField
+    }
+    
+    @objc private func passwordFieldDidChange(_ textField: UITextField) {
+        password = textField.text ?? ""
+    }
+    
+    @objc private func repeatPasswordFieldDidChange(_ textField: UITextField) {
+        repeatPassword = textField.text ?? ""
+    }
+    
+    @objc private func usernameFieldDidChange(_ textField: UITextField) {
+        username = textField.text ?? ""
     }
 
     @objc private func didTapSubmit(_ sender: UIButton) {
