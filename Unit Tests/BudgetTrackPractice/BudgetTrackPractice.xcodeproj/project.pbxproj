@@ -12,7 +12,19 @@
 		2B25D55F29A2DE70005C1C1C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B25D55E29A2DE70005C1C1C /* ViewController.swift */; };
 		2B25D56429A2DE71005C1C1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B25D56329A2DE71005C1C1C /* Assets.xcassets */; };
 		2B25D56729A2DE71005C1C1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B25D56529A2DE71005C1C1C /* LaunchScreen.storyboard */; };
+		2B25D59B29A2F1B5005C1C1C /* MoneyFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B25D59A29A2F1B5005C1C1C /* MoneyFormatterTests.swift */; };
+		2B25D59D29A2F220005C1C1C /* MoneyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B25D59C29A2F220005C1C1C /* MoneyFormatter.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2B25D59529A2F192005C1C1C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2B25D54F29A2DE70005C1C1C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2B25D55629A2DE70005C1C1C;
+			remoteInfo = BudgetTrackPractice;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2B25D55729A2DE70005C1C1C /* BudgetTrackPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetTrackPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -22,10 +34,20 @@
 		2B25D56329A2DE71005C1C1C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2B25D56629A2DE71005C1C1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2B25D56829A2DE71005C1C1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B25D59129A2F192005C1C1C /* BudgetTrackPracticeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudgetTrackPracticeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B25D59A29A2F1B5005C1C1C /* MoneyFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyFormatterTests.swift; sourceTree = "<group>"; };
+		2B25D59C29A2F220005C1C1C /* MoneyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyFormatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		2B25D55429A2DE70005C1C1C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B25D58E29A2F192005C1C1C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -39,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				2B25D55929A2DE70005C1C1C /* BudgetTrackPractice */,
+				2B25D59229A2F192005C1C1C /* BudgetTrackPracticeTests */,
 				2B25D55829A2DE70005C1C1C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -47,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				2B25D55729A2DE70005C1C1C /* BudgetTrackPractice.app */,
+				2B25D59129A2F192005C1C1C /* BudgetTrackPracticeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -57,11 +81,20 @@
 				2B25D55A29A2DE70005C1C1C /* AppDelegate.swift */,
 				2B25D55C29A2DE70005C1C1C /* SceneDelegate.swift */,
 				2B25D55E29A2DE70005C1C1C /* ViewController.swift */,
+				2B25D59C29A2F220005C1C1C /* MoneyFormatter.swift */,
 				2B25D56329A2DE71005C1C1C /* Assets.xcassets */,
 				2B25D56529A2DE71005C1C1C /* LaunchScreen.storyboard */,
 				2B25D56829A2DE71005C1C1C /* Info.plist */,
 			);
 			path = BudgetTrackPractice;
+			sourceTree = "<group>";
+		};
+		2B25D59229A2F192005C1C1C /* BudgetTrackPracticeTests */ = {
+			isa = PBXGroup;
+			children = (
+				2B25D59A29A2F1B5005C1C1C /* MoneyFormatterTests.swift */,
+			);
+			path = BudgetTrackPracticeTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -84,6 +117,24 @@
 			productReference = 2B25D55729A2DE70005C1C1C /* BudgetTrackPractice.app */;
 			productType = "com.apple.product-type.application";
 		};
+		2B25D59029A2F192005C1C1C /* BudgetTrackPracticeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B25D59929A2F192005C1C1C /* Build configuration list for PBXNativeTarget "BudgetTrackPracticeTests" */;
+			buildPhases = (
+				2B25D58D29A2F192005C1C1C /* Sources */,
+				2B25D58E29A2F192005C1C1C /* Frameworks */,
+				2B25D58F29A2F192005C1C1C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2B25D59629A2F192005C1C1C /* PBXTargetDependency */,
+			);
+			name = BudgetTrackPracticeTests;
+			productName = BudgetTrackPracticeTests;
+			productReference = 2B25D59129A2F192005C1C1C /* BudgetTrackPracticeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -96,6 +147,11 @@
 				TargetAttributes = {
 					2B25D55629A2DE70005C1C1C = {
 						CreatedOnToolsVersion = 13.4.1;
+					};
+					2B25D59029A2F192005C1C1C = {
+						CreatedOnToolsVersion = 13.4.1;
+						LastSwiftMigration = 1340;
+						TestTargetID = 2B25D55629A2DE70005C1C1C;
 					};
 				};
 			};
@@ -113,6 +169,7 @@
 			projectRoot = "";
 			targets = (
 				2B25D55629A2DE70005C1C1C /* BudgetTrackPractice */,
+				2B25D59029A2F192005C1C1C /* BudgetTrackPracticeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -127,6 +184,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2B25D58F29A2F192005C1C1C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -137,10 +201,27 @@
 				2B25D55F29A2DE70005C1C1C /* ViewController.swift in Sources */,
 				2B25D55B29A2DE70005C1C1C /* AppDelegate.swift in Sources */,
 				2B25D55D29A2DE70005C1C1C /* SceneDelegate.swift in Sources */,
+				2B25D59D29A2F220005C1C1C /* MoneyFormatter.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B25D58D29A2F192005C1C1C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B25D59B29A2F1B5005C1C1C /* MoneyFormatterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2B25D59629A2F192005C1C1C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2B25D55629A2DE70005C1C1C /* BudgetTrackPractice */;
+			targetProxy = 2B25D59529A2F192005C1C1C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2B25D56529A2DE71005C1C1C /* LaunchScreen.storyboard */ = {
@@ -322,6 +403,55 @@
 			};
 			name = Release;
 		};
+		2B25D59729A2F192005C1C1C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7QNUJ3KXAJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mindhyve.practice.unittest.BudgetTrackPracticeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BudgetTrackPractice.app/BudgetTrackPractice";
+			};
+			name = Debug;
+		};
+		2B25D59829A2F192005C1C1C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7QNUJ3KXAJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mindhyve.practice.unittest.BudgetTrackPracticeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BudgetTrackPractice.app/BudgetTrackPractice";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -339,6 +469,15 @@
 			buildConfigurations = (
 				2B25D56C29A2DE71005C1C1C /* Debug */,
 				2B25D56D29A2DE71005C1C1C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2B25D59929A2F192005C1C1C /* Build configuration list for PBXNativeTarget "BudgetTrackPracticeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B25D59729A2F192005C1C1C /* Debug */,
+				2B25D59829A2F192005C1C1C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
