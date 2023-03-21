@@ -11,19 +11,21 @@ struct CardView: View {
     let card: MemoryGame<String>.Card
     
     var body: some View {
-        ZStack {
-            let shape = RoundedRectangle(cornerRadius: 25.0)
-            
-            if card.isFaceUp {
-                shape.foregroundColor(.white)
-                shape.strokeBorder(lineWidth: 3).foregroundColor(.red)
-                Text(card.content).foregroundColor(.orange).font(.largeTitle)
-            }
-            else if card.isMatched {
-                shape.opacity(0)
-            }
-            else {
-                shape.foregroundColor(.red)
+        GeometryReader { geometry in
+            ZStack {
+                let shape = RoundedRectangle(cornerRadius: 25.0)
+                
+                if card.isFaceUp {
+                    shape.foregroundColor(.white)
+                    shape.strokeBorder(lineWidth: 3).foregroundColor(.red)
+                    Text(card.content).font(Font.system(size: min(geometry.size.width, geometry.size.height) * 0.8))
+                }
+                else if card.isMatched {
+                    shape.opacity(0)
+                }
+                else {
+                    shape.foregroundColor(.red)
+                }
             }
         }
     }
