@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  EmojiMemoryGameView.swift
 //  Memorize
 //
 //  Created by Shawn Frank on 13/2/2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct EmojiMemoryGameView: View {
     @ObservedObject var game: EmojiMemoryGame
     
     var body: some View {
@@ -31,7 +31,7 @@ struct ContentView_Previews: PreviewProvider {
         let game = EmojiMemoryGame()
         
         ZStack {
-            ContentView(game: game)
+            EmojiMemoryGameView(game: game)
         }
         .previewDevice("iPhone 12 mini")
         .previewInterfaceOrientation(.portraitUpsideDown)

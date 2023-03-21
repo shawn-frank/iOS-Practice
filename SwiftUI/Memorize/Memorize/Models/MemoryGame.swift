@@ -10,38 +10,34 @@ import Foundation
 struct MemoryGame<CardContent> where CardContent: Equatable {
     private(set) var cards: Array<Card>
     
-    private var indexOfFirstFaceUpCard: Int?
+    private var indexOfOneAndOnlyFaceUpCard: Int? {
+        get { cards.indices.filter({ cards[$0].isFaceUp }).oneAndOnly }
+        set { cards.indices.forEach { cards[$0].isFaceUp = ($0 == newValue) } }
+    }
     
     mutating func choose(_ card: Card) {
         if let chosenIndex = cards.firstIndex(where: { $0.id == card.id }),
-            !cards[chosenIndex].isFaceUp,
-            !cards[chosenIndex].isMatched {
+           !cards[chosenIndex].isFaceUp,
+           !cards[chosenIndex].isMatched {
             
-            if let faceUpCardIndex = indexOfFirstFaceUpCard {
-                if cards[chosenIndex].content == cards[faceUpCardIndex].content {
+            if let potentialMatchIndex = indexOfOneAndOnlyFaceUpCard {
+                if cards[chosenIndex].content == cards[potentialMatchIndex].content {
                     cards[chosenIndex].isMatched = true
-                    cards[faceUpCardIndex].isMatched = true
+                    cards[potentialMatchIndex].isMatched = true
                 }
                 
-                indexOfFirstFaceUpCard = nil
+                cards[chosenIndex].isFaceUp = true
             }
             else {
-                for cardIndex in cards.indices {
-                    cards[cardIndex].isFaceUp = false
-                }
-                
-                indexOfFirstFaceUpCard = chosenIndex
+                indexOfOneAndOnlyFaceUpCard = chosenIndex
             }
-            
-            cards[chosenIndex].isFaceUp.toggle()
         }
     }
     
     init(numberOfPairs: Int, createCardContent: (Int) -> CardContent) {
         cards = Array<Card>()
         
-        // add number of Pairs of cards x 2 into the array
-        
+        // add numberOfPairs of cards x 2 into the array
         for pairIndex in 0..<numberOfPairs {
             let content = createCardContent(pairIndex)
             cards.append(Card(content: content, id: pairIndex*2))
