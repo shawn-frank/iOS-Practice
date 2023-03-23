@@ -19,6 +19,7 @@ struct EmojiMemoryGameView: View {
                     game.choose(card)
                 }
         }
+        .foregroundColor(.red)
         .padding(.horizontal)
     }
 }
@@ -26,8 +27,9 @@ struct EmojiMemoryGameView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let game = EmojiMemoryGame()
+        game.choose(game.cards.first!)
         
-        ZStack {
+        return ZStack {
             EmojiMemoryGameView(game: game)
         }
         .previewDevice("iPhone 12 mini")

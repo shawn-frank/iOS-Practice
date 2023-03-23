@@ -17,14 +17,14 @@ struct CardView: View {
                 
                 if card.isFaceUp {
                     shape.foregroundColor(.white)
+                    Circle().padding(5).opacity(0.5)
                     shape.strokeBorder(lineWidth: DrawingConstants.lineWidth).foregroundColor(.red)
                     Text(card.content).font(font(in: geometry.size))
                 }
                 else if card.isMatched {
                     shape.opacity(0)
-                }
-                else {
-                    shape.foregroundColor(.red)
+                } else {
+                    shape.fill()
                 }
             }
         }
