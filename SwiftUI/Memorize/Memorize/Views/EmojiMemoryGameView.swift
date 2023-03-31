@@ -13,11 +13,19 @@ struct EmojiMemoryGameView: View {
     @State private var dealt = Set<Int>()
     
     var body: some View {
-        VStack {
-            gameBody
+        ZStack(alignment: .bottom) {
+            VStack {
+                gameBody
+                HStack {
+                    restartButton
+                    Spacer()
+                    shuffleButton
+                }
+                .padding(.horizontal)
+            }
             deckBody
-            shuffleButton
         }
+        
         .padding()
     }
     
@@ -30,7 +38,7 @@ struct EmojiMemoryGameView: View {
                 CardView(card: card)
                     .matchedGeometryEffect(id: card.id, in: dealingNamespace)
                     .padding(4)
-                    .transition(AnyTransition.asymmetric(insertion: .identity, removal: .identity))
+                    .transition(AnyTransition.asymmetric(insertion: .identity, removal: .scale))
                     .zIndex(zIndex(of: card))
                     .onTapGesture {
                         withAnimation {
@@ -68,6 +76,15 @@ struct EmojiMemoryGameView: View {
         Button("Shuffle") {
             withAnimation {
                 game.suffle()
+            }
+        }
+    }
+    
+    var restartButton: some View {
+        Button("Restart") {
+            withAnimation {
+                dealt = []
+                game.restart()
             }
         }
     }
