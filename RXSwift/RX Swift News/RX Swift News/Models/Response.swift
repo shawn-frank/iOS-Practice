@@ -8,5 +8,5 @@
 import Foundation
 
 struct Response {
-    let assets: [NewsAssets]
+    let assets: [NewsAsset]
 }
